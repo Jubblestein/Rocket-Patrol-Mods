@@ -19,11 +19,11 @@ class Play extends Phaser.Scene {
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0)
 
         // add spaceships (x3)
-        this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*5 + borderPadding*2, 'spaceship', 0, 30, 0).setOrigin(0, 0)
-        this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*6 + borderPadding*4, 'spaceship', 0, 20, 0).setOrigin(0, 0)
-        this.ship03 = new Spaceship(this, game.config.width, borderUISize*7 + borderPadding*6, 'spaceship', 0, 10, 0).setOrigin(0, 0)
+        this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*5 + borderPadding*2, 'spaceship', 0, 30, 0, 1).setOrigin(0, 0)
+        this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*6 + borderPadding*4, 'spaceship', 0, 20, 0, 1).setOrigin(0, 0)
+        this.ship03 = new Spaceship(this, game.config.width, borderUISize*7 + borderPadding*6, 'spaceship', 0, 10, 0, 1).setOrigin(0, 0)
         // added new smaller ship
-        this.ship04 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'small-spaceship', 0, 50, 1).setOrigin(0, 0)
+        this.ship04 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'small-spaceship', 0, 50, 1, 1).setOrigin(0, 0)
         
         // define keys
         keyFIRE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F)
@@ -62,6 +62,14 @@ class Play extends Phaser.Scene {
             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).
             setOrigin(0.5)
             this.gameOver = true
+        }, null, this)
+
+        // increase spaceship speed after 30-seconds
+        this.speedUp = this.time.delayedCall(30000, () => {
+            this.ship01.moveSpeed += 1
+            this.ship02.moveSpeed += 1
+            this.ship03.moveSpeed += 1
+            this.ship04.moveSpeed += 1
         }, null, this)
 
         // initialize remaining time in seconds

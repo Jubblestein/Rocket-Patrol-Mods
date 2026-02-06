@@ -3,9 +3,17 @@ Name:   Justin Fogo
 Mod Title:  Rocket Patrol 2 (GOTY Edition)
 Approx. Completion Time: _________
 Mods Chosen:
-    - Display the time remaining in seconds [3-pts]
+    [1-pts]:
+    - Allow player to control rocket after it's been fired
+    - Implement speed increase after 30-seconds
 
-    - Implement new timing/scoring mechanism [5-pts] (+2s on any successful hit; -3s on miss)
+    [3-pts]:
+    - Display the time remaining in seconds
+    - 4 new explosion sfx that randomizes which one is played on impact
+
+    [5-pts]:
+    - Implement new timing/scoring mechanism (+2s on any successful hit; -3s on miss)
+    - Create new enemy spaceship type that's smaller, faster, and worth more points 
 */
 
 'use strict'

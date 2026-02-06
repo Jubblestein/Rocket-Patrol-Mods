@@ -12,7 +12,7 @@ class Rocket extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-        // left/right movement
+        // left/right movement [BOTTOM SCREEN]
         if(!this.isFiring) {
             if(keyLEFT.isDown && this.x >= borderUISize + this.width) {
                 this.x -= this.moveSpeed*2
@@ -26,8 +26,14 @@ class Rocket extends Phaser.GameObjects.Sprite {
             this.sfxShot.play()
         }
         // if fired, move up
+        // added ability to move left/right while going up
         if(this.isFiring && this.y >= borderUISize * 3 + borderPadding) {
             this.y -= this.moveSpeed
+            if(keyLEFT.isDown && this.x >= borderUISize + this.width) {     // copied from above left/right movement
+                this.x -= this.moveSpeed
+            } else if(keyRIGHT.isDown && this.x <= game.config.width - borderUISize - this.width) {
+                this.x += this.moveSpeed
+            }
         }
         // reset on miss
         if(this.y <= borderUISize * 3 + borderPadding) {
