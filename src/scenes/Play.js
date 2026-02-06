@@ -31,6 +31,9 @@ class Play extends Phaser.Scene {
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
 
+        // initialize temporary variable for playing random explosion sfx
+        this.chooseExplosion = 0
+        
         // initialize score
         this.p1Score = 0
 
@@ -164,6 +167,8 @@ class Play extends Phaser.Scene {
         // score add and text update
         this.p1Score += ship.points
         this.scoreLeft.text = this.p1Score
-        this.sound.play('sfx-explosion')
+
+        this.chooseExplosion = Phaser.Math.RND.integerInRange(1, 4) // picks random int to append to each key
+        this.sound.play('sfx-explosion0' + this.chooseExplosion) // plays random explosion sfx
     }
 }
